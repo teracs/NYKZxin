@@ -16,12 +16,22 @@ $("body").on("click","#btn_login",function(){
   });
 });
 
+$("body").on("click",".submit",function(){
+  var title = $(".ui-page-active .post_title").val();
+  var content = $(".ui-page-active .post_body").val();
+  console.log("即将发表文章",title,content);
+  nykzuser.createPost(window.currentBoardName,title,content,null,function(){
+    gotoBoard(window.currentBoardName);
+  });
+});
+
 function doPost(boardName,returnpageid){
   var content = renderCreatePost(boardName,returnpageid);
   pageStack.push(content);
 }
 
 function gotoBoard(boardName,start){
+    window.currentBoardName = boardName;
     nykzuser.showBoard(boardName,start,function(posts){
         var content = renderBoard(posts);
         //$("#" + pageid).trigger("pagecreate");

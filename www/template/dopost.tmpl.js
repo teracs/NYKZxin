@@ -7,13 +7,3 @@
   </div>
   <div data-role="footer" data-position="fixed"><%= footer%></div>
 </div>
-<script>
-  $("#<%= pageid %>").on("click",".submit",function(){
-    var title = $("#<%= pageid %> .post_title").val();
-    var content = $("#<%= pageid %> .post_body").val();
-    console.log("即将发表文章",title,content);
-    nykzuser.createPost("<%= boardName %>",title,content,null,function(){
-      gotoBoard("<%= boardName %>");
-    });
-  });
-</script>
