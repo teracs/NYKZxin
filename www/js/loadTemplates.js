@@ -4,6 +4,7 @@ var tmpl = {
   'home': 'template/home.tmpl.js',
   'board': 'template/board.tmpl.js',
   'post': 'template/post.tmpl.js',
+  'dopost': 'template/dopost.tmpl.js',
 }
 $.ajaxSetup({async:false});
 _.each(tmpl,function(url,id){
@@ -19,7 +20,7 @@ $("body")
   .append('<div id="page_board" data-role="page">');
 //login
 var content = {
-  hasPannel:true,
+  hasPannel:false,
   pageid:"page_login",
   header:"登陆-南洋客栈信",
   content:tmpl.login(),
@@ -48,7 +49,7 @@ function renderBoard(board){
     pageid:pageid,
     header:board.board + " 板",
     content:tmpl.board(board),
-    footer:'<a href="#" data-icon="plus">发表文章</a>\
+    footer:'<a href="#" data-icon="plus" onclick="doPost(\'' + board.board + '\',\'' + pageid + '\')">发表文章</a>\
     <a href="#" data-icon="arrow-u" onclick="gotoBoard(\'' + board.board + '\',' + (board.start-20) +')">上一页</a>\
     <a href="#" data-icon="arrow-d" onclick="gotoBoard(\'' + board.board + '\',' + (board.start+20) +')">下一页</a>',
   };
@@ -66,3 +67,15 @@ function renderPost(post,returnpageid){
   };
   return tmpl.post(content);
 }
+
+function renderCreatePost(boardName,returnpageid){
+  var content = {
+    hasPannel:false,
+    pageid:"page_" + new Date().getTime(),
+    header:'<a href="#" data-icon="back" onclick="pageStack.pop(false)">返回</a><h1>在' + boardName + '板发表文章</h1>',
+    boardName:boardName,
+    footer:"<h1>南洋客栈信！</h1>",
+    returnpage:returnpageid,
+  }
+  return tmpl.dopost(content);
+};

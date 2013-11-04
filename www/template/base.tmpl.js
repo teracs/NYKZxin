@@ -1,7 +1,7 @@
 <div data-role="page" id="<%= pageid %>" class="page">
   <div data-role="header">
   <% if (hasPannel) { %>
-    <a href="#mypanel" data-role="button" data-icon="bars" data-iconpos="notext" data-iconshadow="false" data-inline="true">Bars</a>  <% } %>
+    <a href="#mypanel" data-role="button" data-icon="bars" data-iconshadow="false" data-inline="true">板面</a>  <% } %>
   <h1><%= header %></h1></div>
   <div data-role="content"><%= content %></div>
   <div data-role="footer" data-position="fixed"><%= footer%></div>

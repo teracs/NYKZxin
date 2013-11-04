@@ -8,6 +8,12 @@ NYKZuser = function(userid,password,host,path2endpoint){
   this.drupaluser = null;
 }
 
+NYKZuser.prototype.whoami = function(){
+  this.ajaxAutoFail("post",this.endpoint + "/nykzuser/whoami",{},function(drupaluser){
+    callback(drupaluser);
+  });
+}
+
 NYKZuser.prototype.setCSRFToken = function(callback){
   this.ajaxAutoFail("get",this.host + "/services/session/token", null, function(token){
     $.ajaxSetup({headers:{"X-CSRF-token":token}});

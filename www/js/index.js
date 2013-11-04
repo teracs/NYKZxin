@@ -16,6 +16,11 @@ $("body").on("click","#btn_login",function(){
   });
 });
 
+function doPost(boardName,returnpageid){
+  var content = renderCreatePost(boardName,returnpageid);
+  pageStack.push(content);
+}
+
 function gotoBoard(boardName,start){
     nykzuser.showBoard(boardName,start,function(posts){
         var content = renderBoard(posts);
@@ -27,6 +32,7 @@ function gotoBoard(boardName,start){
 function gotoPost(boardName,filename,returnpageid){
   nykzuser.showPost(boardName,filename,function(post){
     var content = renderPost(post,returnpageid);
+    window.currentPost = post;
     console.log(content);
     pageStack.push(content);
   });
